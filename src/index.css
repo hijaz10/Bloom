@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap");
+@import "tailwindcss";
+
+:root {
+  --color-bg: #0c0a09;
+  --color-overlay: rgba(8, 6, 5, 0.75);
+  --color-pink: #e8a4a4;
+  --color-pink-light: #f5d5d5;
+  --color-gold: #c9a87c;
+  --color-gold-light: #e8d5b7;
+  --color-footer: #100e0d;
+  --color-white: #faf8f5;
+  --color-muted: #a89f96;
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Jost", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.bg-site {
+  background-image:
+    linear-gradient(var(--color-overlay), var(--color-overlay)),
+    url("/images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 168, 124, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.stat-block {
+  border-left: 1px solid rgba(201, 168, 124, 0.3);
+}
+
+.luxury-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(201, 168, 124, 0.4);
+  color: var(--color-white);
+  outline: none;
+  font-family: var(--font-body);
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  width: 100%;
+  padding: 10px 0;
+  transition: border-color 0.3s ease;
+}
+
+.luxury-input::placeholder {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.luxury-input:focus {
+  border-bottom-color: var(--color-gold);
+}
+
+.btn-gold {
+  display: inline-block;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  background: transparent;
+  padding: 14px 40px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.btn-gold:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.btn-gold-fill {
+  display: inline-block;
+  background: var(--color-gold);
+  color: var(--color-bg);
+  padding: 14px 40px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--color-gold);
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.btn-gold-fill:hover {
+  background: transparent;
+  color: var(--color-gold);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
