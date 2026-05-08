@@ -35,22 +35,24 @@ const quotes = [
 export default function Home() {
   return (
     <div>
+      {/* Hero */}
       <section
         className="bg-site w-full min-h-screen flex flex-col justify-center"
-        style={{ paddingTop: "80px", paddingBottom: "80px" }}
+        style={{ paddingTop: "96px", paddingBottom: "64px" }}
       >
         <div
           className="max-w-7xl mx-auto w-full flex flex-col"
-          style={{ padding: "0 32px", gap: "64px" }}
+          style={{ padding: "0 24px", gap: "48px" }}
         >
           <div
-            className="flex flex-col md:flex-row items-center"
-            style={{ gap: "80px" }}
+            className="flex flex-col md:flex-row md:items-center"
+            style={{ gap: "48px" }}
           >
-            {/* Left */}
-            <div className="flex-1 flex flex-col" style={{ gap: "32px" }}>
+            {/* Left — text */}
+            <div className="flex-1 flex flex-col" style={{ gap: "28px" }}>
               <motion.h1
-                className="font-display text-6xl md:text-8xl text-[var(--color-white)] font-light leading-[1.05] italic"
+                className="font-display font-light italic text-[var(--color-white)] leading-[1.05]"
+                style={{ fontSize: "clamp(2.8rem, 8vw, 6rem)" }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.1 }}
@@ -63,27 +65,30 @@ export default function Home() {
 
               <motion.div
                 className="gold-line"
-                style={{ width: "96px", transformOrigin: "left" }}
+                style={{ width: "80px", transformOrigin: "left" }}
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               />
 
               <motion.p
-                className="text-[var(--color-muted)] text-sm font-light leading-relaxed tracking-wide"
-                style={{ maxWidth: "384px" }}
+                className="text-[var(--color-muted)] font-light leading-relaxed tracking-wide"
+                style={{
+                  fontSize: "clamp(0.8rem, 2vw, 0.875rem)",
+                  maxWidth: "380px",
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
                 Now more than ever, children need your help to survive and
-                thrive. Bloom Charity exists to turn compassion into action, one
-                child at a time.
+                thrive. Bloom Charity exists to turn compassion into action —
+                one child at a time.
               </motion.p>
 
               <motion.div
                 className="flex flex-wrap"
-                style={{ gap: "16px" }}
+                style={{ gap: "12px" }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
@@ -98,22 +103,19 @@ export default function Home() {
             </div>
 
             {/* Right — quote cards */}
-            <div
-              className="flex-1 flex flex-wrap justify-center"
-              style={{ gap: "16px" }}
-            >
+            {/* On mobile: 2 columns, smaller cards. On desktop: full size */}
+            <div className="flex-1 grid grid-cols-2" style={{ gap: "12px" }}>
               {quotes.map((q, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.3 + i * 0.15 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                   className="overflow-hidden relative cursor-pointer"
                   style={{
-                    width: "176px",
-                    height: "240px",
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(${q.bg})`,
+                    height: "clamp(160px, 25vw, 240px)",
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.65)), url(${q.bg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     border: "1px solid rgba(201,168,124,0.15)",
@@ -121,15 +123,18 @@ export default function Home() {
                 >
                   <div
                     className="absolute inset-0 flex flex-col justify-end"
-                    style={{ padding: "20px" }}
+                    style={{ padding: "14px" }}
                   >
-                    <p className="font-display text-sm italic text-[var(--color-white)] leading-snug">
+                    <p
+                      className="font-display italic text-[var(--color-white)] leading-snug"
+                      style={{ fontSize: "clamp(0.65rem, 1.5vw, 0.875rem)" }}
+                    >
                       {q.text}
                     </p>
                     {q.author && (
                       <p
                         className="eyebrow text-[var(--color-gold)]"
-                        style={{ marginTop: "12px" }}
+                        style={{ marginTop: "8px", fontSize: "0.55rem" }}
                       >
                         {q.author}
                       </p>
@@ -140,9 +145,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Scroll indicator */}
+          {/* Scroll indicator — hide on mobile */}
           <motion.div
-            className="flex flex-col items-center"
+            className="hidden md:flex flex-col items-center"
             style={{ gap: "8px", opacity: 0.4 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
@@ -160,7 +165,7 @@ export default function Home() {
       {/* Stats */}
       <section
         className="bg-[var(--color-footer)]"
-        style={{ padding: "80px 32px" }}
+        style={{ padding: "60px 24px" }}
       >
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
@@ -171,22 +176,30 @@ export default function Home() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               viewport={{ once: true }}
               className="stat-block flex flex-col"
-              style={{ padding: "32px 40px", gap: "8px" }}
+              style={{ padding: "24px 20px", gap: "6px" }}
             >
-              <p className="font-display text-5xl text-[var(--color-gold)] font-light">
+              <p
+                className="font-display text-[var(--color-gold)] font-light"
+                style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
+              >
                 {s.value}
               </p>
-              <p className="eyebrow text-[var(--color-muted)]">{s.label}</p>
+              <p
+                className="eyebrow text-[var(--color-muted)]"
+                style={{ fontSize: "0.55rem" }}
+              >
+                {s.label}
+              </p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Mission strip */}
-      <section className="bg-site w-full" style={{ padding: "112px 32px" }}>
+      <section className="bg-site w-full" style={{ padding: "80px 24px" }}>
         <div
           className="max-w-4xl mx-auto text-center flex flex-col items-center"
-          style={{ gap: "32px" }}
+          style={{ gap: "28px" }}
         >
           <motion.p
             className="eyebrow"
@@ -197,8 +210,10 @@ export default function Home() {
           >
             Our Mission
           </motion.p>
+
           <motion.h2
-            className="font-display text-4xl md:text-6xl font-light italic text-[var(--color-white)] leading-snug"
+            className="font-display font-light italic text-[var(--color-white)] leading-snug"
+            style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -207,14 +222,16 @@ export default function Home() {
             "To empower the vulnerable, uplift the forgotten, and give every
             child a reason to bloom."
           </motion.h2>
+
           <motion.div
             className="gold-line"
-            style={{ width: "128px", transformOrigin: "center" }}
+            style={{ width: "100px", transformOrigin: "center" }}
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
