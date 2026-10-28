@@ -8,6 +8,7 @@ import PaymentHistory from "./pages/PaymentHistory";
 import AdminPanel from "./pages/AdminPanel";
 import Navbar from "./components/NavBar";
 import ScrollToTop from "./components/ScrollToTop";
+import Projects from "./pages/Projects";
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/payment/verify" element={<PaymentVerify />} />
           <Route path="/payment/history" element={<PaymentHistory />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/bloom/a-d-m-i-n" element={<AdminPanel />} />
         </Routes>
       </div>
     </>
