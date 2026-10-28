@@ -10,8 +10,14 @@ import newsletterRoutes from "./routes/newsletter.js";
 
 const app = express();
 
-// Middleware
-//app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "https://bloomcharityclub.vercel.app",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
 app.use(express.json());
 
 // Routes
@@ -20,14 +26,19 @@ app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/admin", adminRoutes);
 
 // Health check
-app.get("/", (req, res) => res.json({ message: "Bloom API running" }));
+app.get("/", (req, res) => {
+  res.json({ message: "Bloom API running" });
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("MongoDB connected");
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`Server running on port ${process.env.PORT || 5000}`);
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {

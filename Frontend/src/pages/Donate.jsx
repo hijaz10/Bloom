@@ -60,7 +60,7 @@ export default function Donate() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.BACKEND_URL}/api/payment/initialize`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/payment/initialize`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

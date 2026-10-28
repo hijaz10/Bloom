@@ -26,7 +26,7 @@ export default function AdminPanel() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.BACKEND_URL}/api/admin/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -53,13 +53,13 @@ export default function AdminPanel() {
     setDataLoading(true);
     try {
       const [paymentsRes, statsRes, subscribersRes] = await Promise.all([
-        fetch(`${import.meta.env.BACKEND_URL}/api/admin/payments`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/payments`, {
           headers: { "x-admin-password": password },
         }),
-        fetch(`${import.meta.env.BACKEND_URL}/api/admin/stats`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/stats`, {
           headers: { "x-admin-password": password },
         }),
-        fetch(`${import.meta.env.BACKEND_URL}/api/newsletter/all`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/newsletter/all`, {
           headers: { "x-admin-password": password },
         }),
       ]);
@@ -92,7 +92,7 @@ export default function AdminPanel() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.BACKEND_URL}/api/newsletter/send`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/newsletter/send`,
         {
           method: "POST",
           headers: {

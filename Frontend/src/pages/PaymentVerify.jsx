@@ -19,7 +19,7 @@ export default function PaymentVerify() {
     async function verify() {
       try {
         const res = await fetch(
-          `${import.meta.env.BACKEND_URL}/api/payment/verify/${reference}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/payment/verify/${reference}`,
         );
         const data = await res.json();
         setStatus(data.status);
