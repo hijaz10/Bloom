@@ -21,7 +21,7 @@ export default function PaymentHistory() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/payment/history/${encodeURIComponent(email)}`,
+        `${import.meta.env.BACKEND_URL}/api/payment/history/${encodeURIComponent(email)}`,
       );
       const data = await res.json();
 
