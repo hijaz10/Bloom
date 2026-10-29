@@ -10,9 +10,20 @@ import newsletterRoutes from "./routes/newsletter.js";
 
 const app = express();
 
+const allowedOrigins = [
+  // "http://localhost:5173",
+  "https://bloomcharityclub.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "https://bloomcharityclub.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
