@@ -17,7 +17,7 @@ export default function Footer() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/newsletter/subscribe",
+        `${import.meta.env.VITE_BACKEND_URL}/api/newsletter/subscribe`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
