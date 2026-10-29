@@ -41,7 +41,6 @@ router.post("/subscribe", async (req, res) => {
     await Subscriber.create({ email });
     res.json({ message: "Subscribed successfully." });
   } catch (err) {
-    console.error(err.message);
     res.status(500).json({ error: "Something went wrong. Please try again." });
   }
 });
