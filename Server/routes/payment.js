@@ -17,7 +17,10 @@ router.post("/initialize", async (req, res) => {
       .status(400)
       .json({ error: "Name, email and amount are required" });
   }
+  const callbackUrl = `${process.env.CLIENT_URL?.replace(/\/$/, "")}/payment/verify`;
 
+  console.log("CLIENT_URL:", process.env.CLIENT_URL);
+  console.log("PAYSTACK CALLBACK URL:", callbackUrl);
   try {
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
@@ -25,7 +28,7 @@ router.post("/initialize", async (req, res) => {
         email,
         amount: amount * 100, //  kobo
         metadata: { name, email },
-        callback_url: `${process.env.CLIENT_URL}/payment/verify`,
+        callback_url: callbackUrl,
       },
       {
         headers: {
